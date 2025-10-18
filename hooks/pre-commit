@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Get the configured author and committer
+AUTHOR_NAME=$(git config user.name)
+AUTHOR_EMAIL=$(git config user.email)
+COMMITTER_NAME=$(git var GIT_COMMITTER_IDENT | sed -n 's/^\(.*\) <.*$/\1/p')
+COMMITTER_EMAIL=$(git var GIT_COMMITTER_IDENT | sed -n 's/^.* <\(.*\)> .*$/\1/p')
+
+# Check if author and committer match
+if [ "$AUTHOR_NAME" != "$COMMITTER_NAME" ] || [ "$AUTHOR_EMAIL" != "$COMMITTER_EMAIL" ]; then
+    echo "ERROR: Author and committer must match!"
+    echo "Author:    $AUTHOR_NAME <$AUTHOR_EMAIL>"
+    echo "Committer: $COMMITTER_NAME <$COMMITTER_EMAIL>"
+    exit 1
+fi
+
+exit 0

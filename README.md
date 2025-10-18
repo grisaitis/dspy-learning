@@ -10,6 +10,15 @@ This project provides a clean, modular foundation for:
 - Comparing optimization strategies systematically
 - Tracking experiments with MLflow
 
+## Setup
+
+### Git Hooks
+
+After cloning:
+```bash
+./hooks/install
+```
+
 ## References
 
 - [DSPy](https://dspy.ai/)

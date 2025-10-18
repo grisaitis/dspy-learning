@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Read the commit message file
+COMMIT_MSG_FILE=$1
+COMMIT_MSG=$(cat "$COMMIT_MSG_FILE")
+
+# Count the number of lines (excluding empty lines at the end)
+LINE_COUNT=$(echo "$COMMIT_MSG" | sed '/^$/d' | wc -l | tr -d ' ')
+
+# Get the first line
+FIRST_LINE=$(echo "$COMMIT_MSG" | head -n 1)
+
+# Check if message is only one line
+if [ "$LINE_COUNT" -ne 1 ]; then
+    echo "ERROR: Commit message must be a single line!"
+    echo "Found $LINE_COUNT lines"
+    exit 1
+fi
+
+# Check if first line is 120 characters or less
+if [ ${#FIRST_LINE} -gt 120 ]; then
+    echo "ERROR: Commit message must be 120 characters or less!"
+    echo "Current length: ${#FIRST_LINE} characters"
+    echo "Message: $FIRST_LINE"
+    exit 1
+fi
+
+exit 0
