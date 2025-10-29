@@ -1,5 +1,4 @@
 import dspy
-from dspy.datasets import MATH
 
 from dspy_learning.config import settings
 from dspy_learning.data.gsm8k import GSM8KLoader

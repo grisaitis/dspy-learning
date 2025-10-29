@@ -11,7 +11,9 @@ class GSM8KLoader:
     Each example has a question and an answer with reasoning.
     """
 
-    def load(self, train_size: int, val_size: int) -> tuple[list[dspy.Example], list[dspy.Example]]:
+    def load(
+        self, train_size: int, val_size: int
+    ) -> tuple[list[dspy.Example], list[dspy.Example]]:
         """Load GSM8K dataset from HuggingFace.
 
         Args:
@@ -26,19 +28,17 @@ class GSM8KLoader:
 
         # Convert to DSPy examples
         train_examples = [
-            dspy.Example(
-                question=item["question"],
-                answer=item["answer"]
-            ).with_inputs("question")
+            dspy.Example(question=item["question"], answer=item["answer"]).with_inputs(
+                "question"
+            )
             for item in dataset["train"].select(range(train_size))
         ]
 
         # Use test split for validation
         val_examples = [
-            dspy.Example(
-                question=item["question"],
-                answer=item["answer"]
-            ).with_inputs("question")
+            dspy.Example(question=item["question"], answer=item["answer"]).with_inputs(
+                "question"
+            )
             for item in dataset["test"].select(range(val_size))
         ]
 

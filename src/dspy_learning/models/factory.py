@@ -6,7 +6,7 @@ import dspy
 
 # Together AI model registry
 TOGETHER_MODELS = {
-    "llama-3.3-70b": "together_ai/meta-llama/Meta-Llama-3.3-70B-Instruct-Turbo",
+    "llama-3.3-70b": "together_ai/meta-llama/Llama-3.3-70B-Instruct-Turbo-Free",
     "deepseek-r1": "together_ai/deepseek-ai/DeepSeek-R1-Distill-Llama-70B",
     "qwen-2.5-72b": "together_ai/Qwen/Qwen2.5-72B-Instruct-Turbo",
 }
@@ -17,7 +17,7 @@ def create_lm(
     temperature: float = 0.0,
     max_tokens: int = 1000,
     cache: bool = True,
-    **kwargs
+    **kwargs,
 ) -> dspy.LM:
     """Create a DSPy language model using Together AI.
 
@@ -43,6 +43,7 @@ def create_lm(
         # Enable caching to reduce costs
         import litellm
         from litellm.caching import Cache
+
         litellm.cache = Cache()
 
     # Create DSPy LM
@@ -51,7 +52,7 @@ def create_lm(
         api_key=os.getenv("TOGETHER_API_KEY"),
         temperature=temperature,
         max_tokens=max_tokens,
-        **kwargs
+        **kwargs,
     )
 
     return lm
