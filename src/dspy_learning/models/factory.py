@@ -2,7 +2,6 @@
 
 import os
 import dspy
-from litellm import completion
 
 
 # Together AI model registry

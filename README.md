@@ -12,11 +12,9 @@ This project provides a clean, modular foundation for:
 
 ## Setup
 
-### Git Hooks
-
-After cloning:
-```bash
-./hooks/install
+```
+uv sync
+uv run mlflow server --host 127.0.0.1 --port 8080
 ```
 
 ## References
@@ -24,3 +22,4 @@ After cloning:
 - [DSPy](https://dspy.ai/)
 - [Together AI Models](https://docs.together.ai/docs/inference-models)
 - [MLflow Documentation](https://mlflow.org/docs/latest/index.html)
+- 
